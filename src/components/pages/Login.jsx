@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useRef,useContext } from "react";
+import React, { useState, Fragment, useRef, useContext } from "react";
 
 // import SimpleReactValidator from "simple-react-validator";
 import { Sugar } from "react-preloaders";
@@ -35,14 +35,14 @@ const Login = ({ history }) => {
   //     // if (validator.current.allValid()) {
   //     setLoading(true);
   //     const { status, data } = await login(user);
-     
+
   //     if (status === 200) {
   //       toast.success("ورود با موفقیت انحام شد.", {
   //         position: "top-right",
   //         closeOnClick: true,
   //       });
   //       localStorage.setItem("token", data.token);
- 
+
   //       dispatch(GetUserById_Action(data.id));
 
   //       setLoading(false);
@@ -65,7 +65,7 @@ const Login = ({ history }) => {
   //   }
   // };
 
- // const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // console.log("SingleCoursePageData:",Course);
 
   // useEffect(() => {
@@ -74,21 +74,17 @@ const Login = ({ history }) => {
 
   // }, []);
 
+  const loginContext = useContext(Context);
 
+  const {
+    password,
+    setPassword,
+    username,
+    setUserName,
 
-const loginContext = useContext(Context);
-
-const{
-
-  password,
-  setPassword,
-  username,
-  setUserName,
-
-  validator,
-  handellogin,
-
-}=loginContext;
+    validator,
+    handellogin,
+  } = loginContext;
 
   return (
     <Fragment>
@@ -131,20 +127,18 @@ const{
                 />
               </div>
 
-         
-
               <div className="input-group">
                 <span className="input-group-addon" id="password">
                   <i className="zmdi zmdi-lock"></i>
                 </span>
                 <input
-                  type="password"
+                  type="text"
                   name="password"
                   className="form-control"
                   placeholder="رمز عبور "
                   aria-describedby="password"
                   value={password}
-                  onChange={e => {
+                  onChange={(e) => {
                     setPassword(e.target.value);
                   }}
                 />

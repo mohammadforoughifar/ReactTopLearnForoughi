@@ -1,5 +1,5 @@
 ﻿import React, { useEffect } from "react";
-import { Route, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import Mainlayoute from "./mainLayout";
 import Header from "./../components/Header/header";
 import Favorait from "./../components/pages/Favoriate-Main";
@@ -16,6 +16,10 @@ import LogOut from "../components/pages/LogOut";
 import { isEmpty } from "lodash";
 import userContext from './../components/Context/userContext'
 import NotFound from "../components/commen/NotFound";
+import PrivateLayout from "./ProviderLayout";
+import CourseTable from "../components/Admin/CourseTable";
+import NewCourseDialog from "../components/Admin/dialog/NewCourseDialog";
+import CourseEdit from "../components/Admin/dialog/CourseEdit";
 
 
 const TopLearn = (props) => {
@@ -41,7 +45,26 @@ const TopLearn = (props) => {
   }, []);
 
   return (
-    <Mainlayoute>
+<Switch>
+
+<Route path={["/dashboard"]}>
+<PrivateLayout>
+  <Route path="/dashboard/dore" component={CourseTable}/>
+  <Route
+  path="/dashboard"
+  exact
+  render={()=><Redirect to="/"/>}
+  
+  />
+  <Route path="/dashboard/NewCourseDialog" component={NewCourseDialog}/>
+  <Route path="/dashboard/CourseEdit/:id"  component={CourseEdit}/>
+  
+</PrivateLayout>
+</Route>
+
+<Route path={["/"]}>
+
+<Mainlayoute>
       <Switch path="/">
         <Route path="/header" component={Header} />
         <Switch path="/">
@@ -56,6 +79,12 @@ const TopLearn = (props) => {
         </Switch>
       </Switch>
     </Mainlayoute>
+</Route>
+
+</Switch>
+
+
+
   );
 };
 export default TopLearn;

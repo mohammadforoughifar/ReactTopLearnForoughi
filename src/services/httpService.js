@@ -2,7 +2,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
-
+// axios.defaults.headers.post["Content-Type"] = " application/x-www-form-urlencoded";
+// axios.defaults.headers.post["Accept"]="application/json";
+// axios.defaults.headers.post["Content-Type"] = " multipart/form-data";
 const token = localStorage.getItem("token");
 
 if (token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;

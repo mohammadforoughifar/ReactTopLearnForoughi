@@ -33,7 +33,7 @@ const UserContext = ({ children, history }) => {
         dispatch(GetUserById_Action(data.id));
 
         setLoading(false);
-        history.replace("/");
+        history.replace("/"); 
       } else {
         // validator.current.showMessages();
         Error("نام کاربری یا کلمه عبور اشتباه می باشد");
